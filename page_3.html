@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>page_3</title>
+    <link rel="stylesheet" href="/src/bootstrap-5.3.0-alpha1-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/src/css/main.css">
+
+    <script src="/src/jquery.js"></script>
+    <script src="/src/bootstrap-5.3.0-alpha1-dist/js/bootstrap.bundle.min.js" defer></script>
+    <script src="/src/js/main.js" defer></script>
+</head>
+
+<body>
+    <div id="init">
+        <div id="main-pic">
+            <img id="img-bg" src="/public/img/3/背景.png" alt="" srcset="">
+            <img id="img-id-card" src="/public/img/3/身份证.png" alt="" srcset="">
+            <img id="img-id-avatar" src="/public/img/2/0-0-0-0.png" alt="">
+            <div id="head-item">
+                <img id="audio-img" src="/public/声音关.png" alt="" srcset="">
+                <audio id="bg-audio" src="/public/audio/bgm.mp3"></audio>
+                <img id="lang-btn" src="/public/语言按钮.png" alt="" srcset="">
+            </div>
+            <div id="green-arrow">
+                <img id="green-arrow-img" width="150px" height="130px" src="/public/按钮.png" alt="" srcset="">
+            </div>
+            <h2 id="id-name">Michale Jackson</h2>
+        </div>
+    </div>
+
+</body>
+<script>
+    $(function () {
+        $('#green-arrow-img').click(function (e) {
+            e.preventDefault();
+            window.location.href = '/page_4.html'
+        })
+
+        //获取 请求参数 并 放置头像
+        var urlParams = new URLSearchParams(location.search);
+        var result = [];
+        for (var [key, value] of urlParams.entries()) {
+            result[key] = decodeURIComponent(value);
+        }
+
+        $('#id-name').text(result['username']);
+
+        //读取头像信息
+
+        var avatar_pre = '/public/img/2/';
+        var avatar_path = avatar_pre + result['avatar'];
+        $('#img-id-avatar').attr('src', avatar_path);
+
+    })
+
+
+
+</script>
+<style>
+    /* 身份证头像 */
+    #img-id-avatar {
+        position: absolute;
+        top: 300px;
+        left: 440px;
+        width: 330px;
+    }
+
+    /* 身份证 */
+    #img-id-card {
+        position: absolute;
+        top: 0;
+        left: 0px;
+    }
+
+    /* 播放器 */
+    #head-item {
+        position: absolute;
+        top: 0;
+        left: 1680px;
+    }
+
+    #id-name {
+        position: absolute;
+        top: 373px;
+        left: 944px;
+        /* color: aliceblue; */
+    }
+
+    #green-arrow {
+        position: absolute;
+        top: 930px;
+        left: 970px;
+        cursor: pointer;
+    }
+</style>
+
+</html>
