@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>界面2</title>
+    <link rel="stylesheet" href="/src/bootstrap-5.3.0-alpha1-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/src/css/main.css">
+
+    <script src="/src/jquery.js"></script>
+    <script src="/src/bootstrap-5.3.0-alpha1-dist/js/bootstrap.bundle.min.js" defer></script>
+    <script src="/src/js/main.js" defer></script>
+</head>
+
+<body>
+    <div id="init">
+        <div id="main-pic">
+            <div id="head-item">
+                <img id="audio-img" src="/public/声音关.png" alt="" srcset="">
+                <audio id="bg-audio" src="/public/audio/bgm.mp3"></audio>
+                <img id="lang-btn" src="/public/语言按钮.png" alt="" srcset="">
+            </div>
+            <div id="green-arrow">
+                <img id="green-arrow-img" width="150px" height="130px" src="/public/按钮.png" alt="" srcset="">
+            </div>
+            <img id="img-bg" src="/public/img/2/背景.png" alt="" srcset="">
+
+            <div id="init-avatar">
+                <img id="img-avatar" src="/public/img/2/初始角色.png" alt="" srcset="">
+            </div>
+
+            <div id="input-name">
+                <input id="user-name" type="text" autocomplete="off">
+            </div>
+
+            <div id="face-img">
+                <div class="face-img-pic " id="face-2">
+                    <img class="img-btn" src="/public/img/2/脸2.png" alt="" srcset="">
+                </div>
+                <div class="face-img-pic " id="face-1">
+                    <img class="img-btn" src="/public/img/2/脸1.png" alt="" srcset="">
+                </div>
+            </div>
+
+            <div id="hair-img">
+                <div class="hair-img-pic" id="hair-1">
+                    <img class="img-btn" src="/public/img/2/头发1.png" alt="" srcset="">
+                </div>
+                <div class="hair-img-pic" id="hair-2">
+                    <img class="img-btn" src="/public/img/2/头发2.png" alt="" srcset="">
+                </div>
+                <div class="hair-img-pic" id="hair-3">
+                    <img class="img-btn" src="/public/img/2/头发3.png" alt="" srcset="">
+                </div>
+            </div>
+
+
+            <div id="neck-img">
+                <div class="neck-img-pic" id="neck-1">
+                    <img class="img-btn" src="/public/img/2/身体1.png" alt="" srcset="">
+                </div>
+                <div class="neck-img-pic" id="neck-2">
+                    <img class="img-btn" src="/public/img/2/身体2.png" alt="" srcset="">
+                </div>
+            </div>
+
+            <div id="eye-img">
+                <div class="eye-img-pic" id="eye-1">
+                    <img class="img-btn" src="/public/img/2/眼1.png" alt="" srcset="">
+                </div>
+                <div class="eye-img-pic" id="eye-2">
+                    <img class="img-btn" src="/public/img/2/眼2.png" alt="" srcset="">
+                </div>
+                <div class="eye-img-pic" id="eye-3">
+                    <img class="img-btn" src="/public/img/2/眼3.png" alt="" srcset="">
+                </div>
+            </div>
+
+            <div id="generate">
+                <img src="/public/img/2/2.png" alt="" srcset="">
+            </div>
+
+        </div>
+    </div>
+</body>
+
+<script>
+    $(function () {
+        $('#generate').click(function (e) {
+            e.preventDefault();
+
+            var faceImgArr = $('.face-img-pic img');
+
+            let faceNum = 0;
+            let faceIndex = 0;
+            faceImgArr.each(function (i) {
+                let srcText = $(this).attr('src');
+                if (srcText.indexOf('选中') !== -1) {
+                    //表示有选中
+                    faceNum++;
+                    faceIndex = i;
+                }
+            })
+            if (faceNum != 1) {
+                alert('您好！请在Face特征那一列，选择一个方案！不要多选哦~~~');
+                return;
+            }
+
+            var hairImgArr = $('.hair-img-pic img');
+            let hairNum = 0;
+            let hairIndex = 0;
+            hairImgArr.each(function (i) {
+                let srcText = $(this).attr('src');
+                if (srcText.indexOf('选中') !== -1) {
+                    //表示有选中
+                    hairNum++;
+                    hairIndex = i;
+                }
+            })
+            if (hairNum != 1) {
+                alert('您好！请在Hair特征那一列，选择一个方案！不要多选哦~~~');
+                return;
+            }
+
+            var eyeImgArr = $('.eye-img-pic img');
+            let eyeNum = 0;
+            let eyeIndex = 0;
+            eyeImgArr.each(function (i) {
+                let srcText = $(this).attr('src');
+                if (srcText.indexOf('选中') !== -1) {
+                    //表示有选中
+                    eyeNum++;
+                    eyeIndex = i;
+                }
+            })
+            if (eyeNum != 1) {
+                alert('您好！请在Eye特征那一列，选择一个方案！不要多选哦~~~');
+                return;
+            }
+
+            var neckImgArr = $('.neck-img-pic img');
+            let neckNum = 0;
+            let neckIndex = 0;
+            neckImgArr.each(function (i) {
+                let srcText = $(this).attr('src');
+                if (srcText.indexOf('选中') !== -1) {
+                    //表示有选中
+                    neckNum++;
+                    neckIndex = i;
+                }
+            })
+            if (neckNum != 1) {
+                alert('您好！请在Neck特征那一列，选择一个方案！不要多选哦~~~');
+                return;
+            }
+
+            console.log($('#img-avatar').attr('src'));
+            console.log('succ!! ', hairIndex, faceIndex);
+            // String.join()
+
+            let newAvaFile = faceIndex + '-' + hairIndex + '-' + neckIndex + '-' + eyeIndex;
+
+            let newAvatarPath = '/public/img/2/' + newAvaFile + '.png';
+            console.log(newAvatarPath);
+            $('#img-avatar').attr('src', newAvatarPath);
+        });
+    })
+
+    $(function () {
+        $('.img-btn').click(function (e) {
+            e.preventDefault();
+            const path = $(this).attr('src');
+
+            if (path.indexOf('选中') !== -1) {
+                //当前部位是选中状态
+                let textArr = path.split('/');
+
+                const fileName = textArr[4];
+                const fileNameArr = fileName.split('.');
+                const newFilName = fileNameArr[0].substring(0, fileNameArr[0].length - 2) + '.png'
+
+                console.log(newFilName);
+                textArr[4] = newFilName;
+
+                const newPath = textArr.join('/');
+                console.log(newPath);
+                $(this).attr('src', newPath);
+            } else {
+                //当前部位是未选中状态
+
+                //可以考虑，先把所有元素置为 未选中状态
+                // console.log($(this).parent().attr('class'));
+                var classParentName = $(this).parent().attr('class');
+                var className = `.${classParentName}`;
+                var childrenArr = $(className).children();
+
+                childrenArr.each(function (inx, item) {
+                    console.log('debug ', $(item).attr('src'));
+                    var imgSrc = $(item).attr('src');
+                    imgSrc = imgSrc.replace('选中', '');
+                    $(item).attr('src', imgSrc);
+                })
+                let textArr = path.split('/');
+
+                const fileName = textArr[4];
+                const fileNameArr = fileName.split('.');
+                const newFilName = fileNameArr[0] + '选中' + '.png'
+
+                // console.log(newFilName);
+                textArr[4] = newFilName;
+
+                const newPath = textArr.join('/');
+                // console.log(newPath);
+                $(this).attr('src', newPath);
+            }
+        });
+    })
+
+
+    $(function () {
+        $('#green-arrow-img').click(function (e) {
+            e.preventDefault();
+            // console.log($('input').val());
+            var nameInput = $('input').val();
+            if (nameInput.length == 0) {
+                alert('请输入用户名！');
+                return;
+            }
+
+            var imgAvaSrc = $('#img-avatar').attr('src');
+            if (imgAvaSrc.indexOf('初始角色') != -1) {
+                //说明当前是初始角色
+                alert('请选择四个头像元素!并点击黄色按钮，生成头像！');
+                return;
+            }
+
+            var avaPath = $('#img-avatar').attr('src');
+            avaPath = avaPath.split('/').pop();
+            // console.log(avaPath);
+
+            var params = {
+                username: nameInput,
+                avatar: avaPath
+            }
+
+            var queryString = $.param(params);
+            window.location.href = '/page_3.html?' + queryString;
+        })
+    })
+
+</script>
+
+<style>
+    #generate {
+        cursor: pointer;
+        position: absolute;
+        top: 1000px;
+        left: 640px;
+    }
+
+    .img-btn {
+        cursor: pointer;
+    }
+
+    #eye-img {
+        position: absolute;
+        top: 80px;
+        left: 1140px;
+    }
+
+    .eye-img-pic {
+        margin-top: 180px;
+    }
+
+    #neck-img {
+        position: absolute;
+        top: 160px;
+        left: 770px;
+    }
+
+    .neck-img-pic {
+        margin-top: 140px;
+    }
+
+    .hair-img-pic {
+        margin-top: 90px;
+    }
+
+    #hair-2 {
+        transform: translateX(-10px);
+    }
+
+    #hair-3 {
+        transform: translateX(30px);
+    }
+
+    #hair-img {
+        position: absolute;
+        top: 100px;
+        left: 400px;
+    }
+
+    .face-img-pic {
+        margin-top: 200px;
+    }
+
+    #face-img {
+        position: absolute;
+        top: 20px;
+        left: 95px;
+    }
+
+    #user-name {
+        background-color: transparent;
+        /* height: 40px; */
+        color: white;
+        font-size: 20px;
+        font-weight: bolder;
+        border: none;
+    }
+
+    #input-name {
+        position: absolute;
+        top: 670px;
+        left: 1620px;
+
+    }
+
+    #init-avatar {
+        position: absolute;
+        top: 160px;
+        left: 1500px;
+    }
+
+    #green-arrow {
+        position: absolute;
+        top: 850px;
+        left: 1600px;
+        cursor: pointer;
+    }
+
+    /* 播放器 */
+    #head-item {
+        position: absolute;
+        top: 0;
+        left: 1680px;
+    }
+</style>
+
+</html>
